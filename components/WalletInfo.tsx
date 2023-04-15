@@ -36,9 +36,11 @@ const WalletInfo = ({ visible, onClose }: { visible: boolean, onClose: () => voi
                 {active
                     ? <>
                         <table className="wallet-detail-table">
-                            <tr><th>Account</th><td><AccountInfo account={account} /></td></tr>
-                            <tr><th>Chain Id</th><td>{chainId}</td></tr>
-                            <tr><th>Balance</th><td>{balance && formatEther(balance)} BNB</td></tr>
+                            <tbody>
+                                <tr><th>Account</th><td><AccountInfo account={account} /></td></tr>
+                                <tr><th>Chain Id</th><td>{chainId}</td></tr>
+                                <tr><th>Balance</th><td>{balance && formatEther(balance)} BNB</td></tr>
+                            </tbody>
                         </table>
                         <button onClick={disconnect} className="py-2 mt-10 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-red-600 hover:bg-red-800">Disconnect</button>
                     </>

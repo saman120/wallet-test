@@ -40,7 +40,7 @@ const CheckWalletStatus = () => {
 
 const CurrencyInput = ({ label, value, placeholder, onChange }: { label: string, value: string, placeholder: string, onChange: (e: any) => void }) => <div>
     <label className="block text-gray-700 font-medium mb-2">{label}</label>
-    <input type="number" id="input2" className="border w-full p-2 rounded-lg" value={value} onChange={onChange} placeholder={placeholder} />
+    <input type="number" id="input2" className="border w-full p-2 rounded-lg" value={value || ''} onChange={onChange} placeholder={placeholder} />
 </div>;
 
 export default CurrencyConversion;
