@@ -25,3 +25,21 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.wallet-detail-table{
+  margin:20px;
+}
+
+.wallet-detail-table tr{
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.wallet-detail-table th{
+  padding:10px;
+  text-align: left;
+}
+
+.wallet-detail-table td{
+  padding:10px;
+  text-align: right;
+}
