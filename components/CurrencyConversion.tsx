@@ -12,7 +12,7 @@ const CurrencyConversion = () => {
                     ? prevCurrency
                     : convertCurrency(currency, e.target.value.trim()));
 
-    return (<div className="bg-white shadow-md rounded-lg" style={{width:500}}>
+    return (<div className="bg-white shadow-md rounded-lg currency-container">
         <h2 className="text-lg font-medium mb-4 bg-gray-500 text-white p-4 rounded-t-lg">Currency Conversion</h2>
         <div className="px-4">
             <div className="grid grid-cols-1 p-4">

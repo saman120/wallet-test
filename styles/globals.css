@@ -43,3 +43,7 @@ body {
   padding:10px;
   text-align: right;
 }
+
+.currency-container{
+  width:500px;
+}
