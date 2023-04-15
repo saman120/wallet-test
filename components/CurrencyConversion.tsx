@@ -13,7 +13,7 @@ const CurrencyConversion = () => {
                     : convertCurrency(currency, e.target.value.trim()));
 
     return (<div className="bg-white shadow-md rounded-lg currency-container">
-        <h2 className="text-lg font-medium mb-4 bg-gray-500 text-white p-4 rounded-t-lg">Currency Conversion</h2>
+        <h2 className="text-lg font-medium mb-4 bg-gray-500 text-white p-4 rounded-t-lg">Converter</h2>
         <div className="px-4">
             <div className="grid grid-cols-1 p-4">
                 <CurrencyInput label={"NEP"} placeholder="Enter Amount in NEP" value={currency["NEP"]} onChange={convertAndSetCurrency('NEP')} />
@@ -29,11 +29,11 @@ const CurrencyConversion = () => {
 };
 
 const CheckWalletStatus = () => {
-    const [showWallet, setShowWallet] = useState(false);
+    const [showWallet, setShowWallet] = useState<boolean>(false);
     return (<><a href="#" className="text-blue-500 hover:text-blue-700 cursor-pointer text-center" onClick={() => setShowWallet(true)}>
         Check wallet Details
     </a>
-    {showWallet && <WalletInfo onClose={()=>setShowWallet(false)} />}
+    <WalletInfo visible={showWallet} onClose={()=>setShowWallet(false)} />
     </>);
 };
 

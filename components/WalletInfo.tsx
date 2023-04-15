@@ -1,13 +1,13 @@
 import { useWeb3React } from "@web3-react/core"
 import { InjectedConnector } from '@web3-react/injected-connector'
 import { useEffect, useState } from "react";
-export const injected: InjectedConnector = new InjectedConnector({});
+export const injected: InjectedConnector = new InjectedConnector({supportedChainIds: [56],});
 
-async function getWalletBalance(library:any, account:string):Promise<string> {
+async function getWalletBalance(library: any, account: string): Promise<string> {
     return await library && library.eth && await library.eth.getBalance(account);
 }
 
-const WalletInfo = ({ onClose } : {onClose:()=>void}) => {
+const WalletInfo = ({ visible, onClose }: { visible: boolean, onClose: () => void }) => {
     const [balance, setBalance] = useState<string>();
     const { library, account, activate, deactivate, active, chainId, error } = useWeb3React();
 
@@ -24,8 +24,10 @@ const WalletInfo = ({ onClose } : {onClose:()=>void}) => {
         deactivate();
     }
 
+    console.log('library:',library);
+
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center">
+        <div className={visible ? "fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center" : 'hidden'}>
             <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg w-500">
                 <div className="flex w-full justify-between px-5 py-2">
                     <h1 className="text-lg font-medium">Wallet Details</h1>
@@ -36,7 +38,7 @@ const WalletInfo = ({ onClose } : {onClose:()=>void}) => {
                         <table className="wallet-detail-table">
                             <tr><th>Account</th><td>{account}</td></tr>
                             <tr><th>Chain Id</th><td>{chainId}</td></tr>
-                            <tr><th>Balance</th><td>{balance}</td></tr>
+                            <tr><th>Balance</th><td>{balance} BNB</td></tr>
                         </table>
                         <button onClick={disconnect} className="py-2 mt-10 mb-4 text-lg font-bold text-white rounded-lg w-56 bg-red-600 hover:bg-red-800">Disconnect</button>
                     </>
