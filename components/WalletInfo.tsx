@@ -3,7 +3,7 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 import { useEffect, useState } from "react";
 import { formatEther } from '@ethersproject/units';
 
-export const injected: InjectedConnector = new InjectedConnector({supportedChainIds: [56,97],});
+export const injected: InjectedConnector = new InjectedConnector({ supportedChainIds: [56, 97], });
 
 async function getWalletBalance(library: any, account: string): Promise<string> {
     return await library && library.eth && await library.eth.getBalance(account);
@@ -14,7 +14,6 @@ const WalletInfo = ({ visible, onClose }: { visible: boolean, onClose: () => voi
     const { library, account, activate, deactivate, active, chainId, error } = useWeb3React();
 
     useEffect(() => {
-        console.log("get Balance :::::::::::::");
         if (account && library)
             getWalletBalance(library, account).then(setBalance);
     }, [account, library])
@@ -27,8 +26,6 @@ const WalletInfo = ({ visible, onClose }: { visible: boolean, onClose: () => voi
         deactivate();
     }
 
-    console.log('library:',library);
-
     return (
         <div className={visible ? "fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center" : 'hidden'}>
             <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg w-500">
@@ -39,7 +36,7 @@ const WalletInfo = ({ visible, onClose }: { visible: boolean, onClose: () => voi
                 {active
                     ? <>
                         <table className="wallet-detail-table">
-                            <tr><th>Account</th><td><AccountInfo account={account}/></td></tr>
+                            <tr><th>Account</th><td><AccountInfo account={account} /></td></tr>
                             <tr><th>Chain Id</th><td>{chainId}</td></tr>
                             <tr><th>Balance</th><td>{balance && formatEther(balance)} BNB</td></tr>
                         </table>
@@ -54,14 +51,12 @@ const WalletInfo = ({ visible, onClose }: { visible: boolean, onClose: () => voi
     )
 };
 
-const AccountInfo = ({account}:{account:string|null|undefined})=>{
+const AccountInfo = ({ account }: { account: string | null | undefined }) => {
     const [hide, setHide] = useState<boolean>(true);
-    if(!account) return <span></span>;
-    else if(hide)
-        return <span>{account.slice(0,5)}...{account.slice(-4)}</span>
-        else 
-        return <span>{account}</span>
-}
 
+    return (<span className="cursor-pointer" onClick={() => setHide(!hide)}>
+        {account && hide ? (account.slice(0, 5) + '...' + account.slice(-4)) : account}
+    </span>);
+}
 
 export default WalletInfo;

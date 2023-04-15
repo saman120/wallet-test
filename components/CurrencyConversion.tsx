@@ -6,8 +6,8 @@ const CurrencyConversion = () => {
     const [currency, setCurrency] = useState<CurrencyValueType>({});
 
     const convertAndSetCurrency =
-        (currency : string) =>
-            (e : any) => setCurrency(
+        (currency: string) =>
+            (e: any) => setCurrency(
                 prevCurrency => (e.target.value && isNaN(e.target.value))
                     ? prevCurrency
                     : convertCurrency(currency, e.target.value.trim()));
@@ -30,14 +30,15 @@ const CurrencyConversion = () => {
 
 const CheckWalletStatus = () => {
     const [showWallet, setShowWallet] = useState<boolean>(false);
-    return (<><a href="#" className="text-blue-500 hover:text-blue-700 cursor-pointer text-center" onClick={() => setShowWallet(true)}>
-        Check wallet Details
-    </a>
-    <WalletInfo visible={showWallet} onClose={()=>setShowWallet(false)} />
+    return (<>
+        <a href="#" className="text-blue-500 hover:text-blue-700 cursor-pointer text-center" onClick={() => setShowWallet(true)}>
+            Check wallet details
+        </a>
+        <WalletInfo visible={showWallet} onClose={() => setShowWallet(false)} />
     </>);
 };
 
-const CurrencyInput = ({ label, value, placeholder, onChange }:{label: string, value:string, placeholder:string,  onChange: (e:any)=>void}) => <div>
+const CurrencyInput = ({ label, value, placeholder, onChange }: { label: string, value: string, placeholder: string, onChange: (e: any) => void }) => <div>
     <label className="block text-gray-700 font-medium mb-2">{label}</label>
     <input type="number" id="input2" className="border w-full p-2 rounded-lg" value={value} onChange={onChange} placeholder={placeholder} />
 </div>;
